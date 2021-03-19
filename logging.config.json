@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "formatters": {
+    "simple": {
+      "format": "[%(levelname)s :: %(asctime)s] %(message)s"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "INFO",
+      "formatter": "simple",
+      "stream": "ext://sys.stdout"
+    },
+
+    "info_file_handler": {
+      "class": "logging.FileHandler",
+      "level": "DEBUG",
+      "formatter": "simple",
+      "filename": "hiwors-logging-info.log"
+    }
+  },
+
+  "root": {
+    "level": "DEBUG",
+    "handlers": ["info_file_handler"]
+  }
+}
