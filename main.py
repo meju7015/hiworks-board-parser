@@ -81,6 +81,9 @@ if __name__ == '__main__':
         prevContent = json.loads(prevContent)
         nextContent = json.loads(boardReq.content)
 
+        print(nextContent['result']['TOTAL_CNT'])
+        print(prevContent['result']['TOTAL_CNT'])
+
         if int(nextContent['result']['TOTAL_CNT']) > int(prevContent['result']['TOTAL_CNT']):
             newCount = int(nextContent['result']['TOTAL_CNT']) - int(prevContent['result']['TOTAL_CNT'])
 
@@ -119,5 +122,10 @@ if __name__ == '__main__':
                 )
 
                 logger.info("{newCount}개의 새로운 메시지를 전송했습니다.")
+
+        elif int(nextContent['result']['TOTAL_CNT']) < int(prevContent['result']['TOTAL_CNT']):
+            setCache(
+                json.dumps(json.loads(boardReq.content))
+            )
 
         exit()
