@@ -121,7 +121,7 @@ if __name__ == '__main__':
                     json.dumps(json.loads(boardReq.content))
                 )
 
-                logger.info("{newCount}개의 새로운 메시지를 전송했습니다.")
+                logger.info(f'{newCount}개의 새로운 메시지를 전송했습니다.')
 
         elif int(nextContent['result']['TOTAL_CNT']) < int(prevContent['result']['TOTAL_CNT']):
             setCache(
