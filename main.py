@@ -84,9 +84,6 @@ if __name__ == '__main__':
         prevContent = json.loads(prevContent)
         nextContent = json.loads(boardReq.content)
 
-        print(prevContent['result']['TOTAL_CNT'])
-        print(nextContent['result']['TOTAL_CNT'])
-
         if nextContent['result']['TOTAL_CNT'] > prevContent['result']['TOTAL_CNT']:
             newCount = int(nextContent['result']['TOTAL_CNT']) - int(prevContent['result']['TOTAL_CNT'])
 
