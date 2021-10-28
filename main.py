@@ -105,6 +105,7 @@ if __name__ == '__main__':
                     content += '날짜 : ' + post['write_date'] + '\n'
                     content += '작성자 : ' + post['name']
                     content += postViewBody
+                    content += "링크 : " + f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{post["fk_board_info_no"]}/{post["no"]}/new_list'
                     content = parse.quote(content)
 
                     send = 'content=' + content
