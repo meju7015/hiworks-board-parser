@@ -55,8 +55,6 @@ def __get_logger():
 if __name__ == '__main__':
     logger = __get_logger()
 
-    logger.info('hi-works parser launched')
-
     with requests.Session() as s:
         loginReq = s.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
 
@@ -77,7 +75,6 @@ if __name__ == '__main__':
 
         if prevContent is None:
             logger.info('no cached list data')
-            #setCache(json.dumps(json.loads(boardReq.content)['result']['LIST']))
             setCache(boardReq.content)
             exit()
 
@@ -120,5 +117,7 @@ if __name__ == '__main__':
                 setCache(
                     json.dumps(json.loads(boardReq.content))
                 )
+
+                logger.info("{newCount}개의 새로운 메시지를 전송했습니다.")
 
         exit()
