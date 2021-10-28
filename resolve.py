@@ -116,16 +116,30 @@ if __name__ == '__main__':
             if 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
                 # 새로운것만 체크하여 알람을 보내자
-                newCount = len(item['booking_info']['BKCP']) - len(prevContent['result']['list'][i]['booking_info']['BKCP'])
+                #newCount = len(item['booking_info']['BKCP']) - len(prevContent['result']['list'][i]['booking_info']['BKCP'])
 
                 # 새로운 갯수만큼 메시지를 보낸다
-                for n in range(newCount):
-                    sendMessage({
-                        'name': item['name'],
-                        'user_name': item['booking_info']['BKCP'][n]['user_name'],
-                        'start': item['booking_info']['BKCP'][n]['start'],
-                        'end': item['booking_info']['BKCP'][n]['end'],
-                    })
+                for n in range(len(item['booking_info']['BKCP'])):
+                    isContinue = False
+                    # 새로운것이 이미 노출되었던것인지 비교
+                    print('N ? ' + n.__str__())
+                    for c2 in prevContent['result']['list'][i]['booking_info']['BKCP']:
+                        print(c2['no'])
+                        print(item['booking_info']['BKCP'][n]['no'])
+                        if c2['no'] == item['booking_info']['BKCP'][n]['no']:
+                            print('isContinue')
+                            isContinue = True
+
+                    if isContinue:
+                        continue
+                    else:
+                        sendMessage({
+                            'name': item['name'],
+                            'user_name': item['booking_info']['BKCP'][n]['user_name'],
+                            'start': item['booking_info']['BKCP'][n]['start'],
+                            'end': item['booking_info']['BKCP'][n]['end'],
+                        })
+
             elif 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
                 setCache(boardReq.content)
