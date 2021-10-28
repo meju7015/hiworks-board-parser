@@ -1,3 +1,5 @@
+import hashlib
+
 from bs4 import BeautifulSoup as bs
 from fake_useragent import UserAgent
 import requests
@@ -75,39 +77,40 @@ if __name__ == '__main__':
 
         if prevContent is None:
             logger.info('no cached list data')
-            setCache(json.dumps(json.loads(boardReq.content)['result']['LIST']))
+            #setCache(json.dumps(json.loads(boardReq.content)['result']['LIST']))
+            setCache(boardReq.content)
             exit()
 
         prevContent = json.loads(prevContent)
-        nextContent = json.loads(boardReq.content)['result']['LIST']
+        nextContent = json.loads(boardReq.content)
 
-        merges = merge(prevContent, nextContent)
+        print(prevContent['result']['TOTAL_CNT'])
+        print(nextContent['result']['TOTAL_CNT'])
 
-        if merges is None:
-            setCache(json.dumps(json.loads(boardReq.content)['result']['LIST']))
-            exit()
+        if nextContent['result']['TOTAL_CNT'] > prevContent['result']['TOTAL_CNT']:
+            newCount = int(nextContent['result']['TOTAL_CNT']) - int(prevContent['result']['TOTAL_CNT'])
 
-        for data in merges:
-            viewReq = s.get(f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{data["fk_board_info_no"]}/{data["no"]}/new_list')
-            soup = bs(viewReq.text, 'html.parser')
-            body = soup.find('div', {'id': 'board_content_Div'})
+            for i in range(newCount):
+                post = nextContent['result']['LIST'][i]
+                postViewRequest = s.get(f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{post["fk_board_info_no"]}/{post["no"]}/new_list')
+                soup = bs(postViewRequest.text, 'html.parser')
+                postViewBody = soup.find('div', {'id': 'board_content_Div'})
 
-            try:
-                body.find('div', {'id': 'pull_div'}).decompose()
-            except AttributeError:
-                pass
+                try:
+                    postViewBody.find('div', {'id': 'pull_div'}).decompose()
+                except AttributeError:
+                    pass
 
-            if body is not None:
-                body = body.text
-                content = '/메일/ Hi-Works 게시판 알람 '
-                content += '제목 : ' + data['title'] + '\n'
-                content += '날짜 : ' + data['write_date'] + '\n'
-                content += body
-                content = parse.quote(content)
+                if postViewBody is not None:
+                    postViewBody = postViewBody.text
+                    content = '/메일/ Hi-Works 게시판 알람'
+                    content += '제목 : ' + post['title'] + '\n'
+                    content += '날짜 : ' + post['write_date'] + '\n'
+                    content += '작성자 : ' + post['name']
+                    content += postViewBody
+                    content = parse.quote(content)
 
-                send = 'content=' + content
-
-                pprint(send)
+                    send = 'content=' + content
 
                 requests.post(url=os.getenv('NATE_ON_WEB_HOOK'), data=send, headers={
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -117,5 +120,8 @@ if __name__ == '__main__':
                     'Content-Type': 'application/x-www-form-urlencoded'
                 })
 
+                setCache(
+                    json.dumps(json.loads(boardReq.content))
+                )
 
-    setCache(json.dumps(json.loads(boardReq.content)['result']['LIST']))
+        exit()
