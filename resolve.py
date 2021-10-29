@@ -133,7 +133,7 @@ if __name__ == '__main__':
                             'end': item['booking_info']['BKCP'][n]['end'],
                         })
             # 예약이 없는 상태에서 최초 예약이 들어올경우
-            elif 'BKCP' in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
+            elif 'BKCP' not in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
                 # 모든게 새로들어온것이다.
                 for n in range(len(item['booking_info']['BKCP'])):
                     sendMessage({
@@ -142,6 +142,7 @@ if __name__ == '__main__':
                         'start': item['booking_info']['BKCP'][n]['start'],
                         'end': item['booking_info']['BKCP'][n]['end'],
                     })
+                setCache(boardReq.content)
             elif 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
                 setCache(boardReq.content)
