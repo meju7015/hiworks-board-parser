@@ -61,9 +61,9 @@ def sendMessage(listItem):
         'Content-Type': 'application/x-www-form-urlencoded'
     })
 
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
+    '''requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
         'Content-Type': 'application/x-www-form-urlencoded'
-    })
+    })'''
 
 def __get_logger():
     with open('logging.config.json', 'rt') as file:
@@ -115,19 +115,12 @@ if __name__ == '__main__':
             # 리스트의 예약 내용이 증가했으면 ?
             if 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                # 새로운것만 체크하여 알람을 보내자
-                #newCount = len(item['booking_info']['BKCP']) - len(prevContent['result']['list'][i]['booking_info']['BKCP'])
-
-                # 새로운 갯수만큼 메시지를 보낸다
+                # 새로 들어온예약이 무엇인지 찾아보자
                 for n in range(len(item['booking_info']['BKCP'])):
                     isContinue = False
-                    # 새로운것이 이미 노출되었던것인지 비교
-                    print('N ? ' + n.__str__())
+                    # 새로운것이 이미 뿌려졌던건지 비교
                     for c2 in prevContent['result']['list'][i]['booking_info']['BKCP']:
-                        print(c2['no'])
-                        print(item['booking_info']['BKCP'][n]['no'])
                         if c2['no'] == item['booking_info']['BKCP'][n]['no']:
-                            print('isContinue')
                             isContinue = True
 
                     if isContinue:
@@ -139,7 +132,16 @@ if __name__ == '__main__':
                             'start': item['booking_info']['BKCP'][n]['start'],
                             'end': item['booking_info']['BKCP'][n]['end'],
                         })
-
+            # 예약이 없는 상태에서 최초 예약이 들어올경우
+            elif 'BKCP' in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
+                # 모든게 새로들어온것이다.
+                for n in range(len(item['booking_info']['BKCP'])):
+                    sendMessage({
+                        'name': item['name'],
+                        'user_name': item['booking_info']['BKCP'][n]['user_name'],
+                        'start': item['booking_info']['BKCP'][n]['start'],
+                        'end': item['booking_info']['BKCP'][n]['end'],
+                    })
             elif 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
                 setCache(boardReq.content)
