@@ -34,6 +34,20 @@ LOGIN_INFO = {
 
 USER_EMAIL = {
     '정주호': 'mason.jeong@stickint.kr',
+    '김유빈': 'mason.jeong@stickint.kr',
+    '김경식': 'mason.jeong@stickint.kr',
+    '송민섭': 'mason.jeong@stickint.kr',
+    '이희재': 'mason.jeong@stickint.kr',
+    '김하영': 'mason.jeong@stickint.kr',
+}
+
+USER_PHONE = {
+    '정주호': '010-2396-2036',
+    '김유빈': '010-2396-2036',
+    '김경식': '010-2396-2036',
+    '송민섭': '010-2396-2036',
+    '이희재': '010-2396-2036',
+    '김하영': '010-2396-2036',
 }
 
 def getRedisClient():
@@ -82,13 +96,14 @@ def sendEmail(listItem):
     for item in listItem:
         print(item)
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"[{item['name']}/STICK] {item['date']} 부재 알림"
-        msg['From'] = os.getenv('SEND_EMAIL')
-        msg['To'] = item['email']
+        msg['Subject'] = f"[{item['name']}/STICK] {item['date']} {item['vacation_type']} 알림"
+        msg['From'] = item['email']
+        msg['To'] = os.getenv('SEND_EMAIL')
         part1 = MIMEText(makeHtml(item), 'html')
         msg.attach(part1)
         s.sendmail(sendEmail, USER_EMAIL['정주호'], msg.as_string())
-        s.quit()
+
+    s.quit()
     return
 
 def makeHtml(user):
@@ -100,6 +115,11 @@ def makeHtml(user):
     html = html.replace('{vacation_type}', user['vacation_type'])
     html = html.replace('{date}', user['date'])
     html = html.replace('{email}', user['email'])
+
+    if 'start_time' in user and 'end_time' in user:
+        html = html.replace('{content}', f"금일 {user['vacation_type']}사용으로 {user['start_time']} 부터 {user['end_time']}까지 부재입니다.<br>업무에 참고 부탁 드립니다.")
+    else:
+        html = html.replace('{content}', f"금일 {user['vacation_type']}사용으로 부재입니다.<br>업무에 참고 부탁 드립니다.")
 
     if 'hours' in user:
         html = html.replace('{hours}', user['hours'])
@@ -142,9 +162,7 @@ if __name__ == '__main__':
             'limit': 7
         }
 
-        #today = datetime.datetime.today().strftime('%Y-%m-%d')
-
-        today = '2022-04-08'
+        today = datetime.datetime.today().strftime('%Y-%m-%d')
 
         boardReq = s.get(
             url=f'https://hr-work-api.office.hiworks.com/v4/user-work-data-calendar?&&filter[work_date][gte]={today}&filter[work_date][lte]={today}&page[limit]=20&page[offset]=0',
@@ -160,11 +178,16 @@ if __name__ == '__main__':
             for userWorkData in item['user_work_data']:
                 if 'vacation_data' in userWorkData:
                     for vacationData in userWorkData['vacation_data']:
-                        print(vacationData)
+                        print(item['name'])
+                        if item['name'] not in USER_EMAIL:
+                            continue
+
                         vacation = {
                             'name': item['name'],
                             'date': today,
                             'vacation_type': vacationData['vacation_type_title'],
+                            'email': USER_EMAIL[item['name']],
+                            'phone': USER_PHONE[item['name']]
                         }
 
                         if 'hours' in vacationData:
@@ -174,48 +197,9 @@ if __name__ == '__main__':
                         if 'start_time' in vacationData and 'end_time' in vacationData:
                             vacation['vacation_type'] += f" {vacationData['start_time']} ~ {vacationData['end_time']}"
 
-
                         vacations.append(vacation)
 
-
-        sendMessage(vacations)
-
-        '''for i, item in enumerate(nextContent['result']['list']):
-            # 리스트의 예약 내용이 증가했으면 ?
-            if 'BKCP' in item['booking_info'] \
-                    and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                # 새로 들어온예약이 무엇인지 찾아보자
-                for n in range(len(item['booking_info']['BKCP'])):
-                    isContinue = False
-                    # 새로운것이 이미 뿌려졌던건지 비교
-                    for c2 in prevContent['result']['list'][i]['booking_info']['BKCP']:
-                        if c2['no'] == item['booking_info']['BKCP'][n]['no']:
-                            isContinue = True
-
-                    if isContinue:
-                        continue
-                    else:
-                        sendMessage({
-                            'name': item['name'],
-                            'user_name': item['booking_info']['BKCP'][n]['user_name'],
-                            'start': item['booking_info']['BKCP'][n]['start'],
-                            'end': item['booking_info']['BKCP'][n]['end'],
-                        })
-            # 예약이 없는 상태에서 최초 예약이 들어올경우
-            elif 'BKCP' not in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
-                # 모든게 새로들어온것이다.
-                for n in range(len(item['booking_info']['BKCP'])):
-                    sendMessage({
-                        'name': item['name'],
-                        'user_name': item['booking_info']['BKCP'][n]['user_name'],
-                        'start': item['booking_info']['BKCP'][n]['start'],
-                        'end': item['booking_info']['BKCP'][n]['end'],
-                    })
-                setCache(boardReq.content)
-            elif 'BKCP' in item['booking_info'] \
-                    and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                setCache(boardReq.content)'''
-
-        setCache(boardReq.content)
+        print(vacations)
+        sendEmail(vacations)
         exit()
 

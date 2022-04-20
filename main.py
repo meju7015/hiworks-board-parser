@@ -23,6 +23,7 @@ LOGIN_INFO = {
     'ip_security': 1
 }
 
+
 def getRedisClient():
     return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), decode_responses=True)
 
@@ -45,12 +46,14 @@ def merge(oldList, newList):
 
     return lists
 
+
 def __get_logger():
     with open('logging.config.json', 'rt') as file:
         config = json.load(file)
 
     logging.config.dictConfig(config)
     return logging.getLogger()
+
 
 if __name__ == '__main__':
     logger = __get_logger()
@@ -89,7 +92,8 @@ if __name__ == '__main__':
 
             for i in range(newCount):
                 post = nextContent['result']['LIST'][i]
-                postViewRequest = s.get(f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{post["fk_board_info_no"]}/{post["no"]}/new_list')
+                postViewRequest = s.get(
+                    f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{post["fk_board_info_no"]}/{post["no"]}/new_list')
                 soup = bs(postViewRequest.text, 'html.parser')
                 postViewBody = soup.find('div', {'id': 'board_content_Div'})
 
