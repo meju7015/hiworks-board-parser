@@ -34,20 +34,20 @@ LOGIN_INFO = {
 
 USER_EMAIL = {
     '정주호': 'mason.jeong@stickint.kr',
-    '김유빈': 'mason.jeong@stickint.kr',
-    '김경식': 'mason.jeong@stickint.kr',
-    '송민섭': 'mason.jeong@stickint.kr',
-    '이희재': 'mason.jeong@stickint.kr',
-    '김하영': 'mason.jeong@stickint.kr',
+    '김유빈': 'yb.kim@stickint.kr',
+    '김경식': 'ks.kim@stickint.kr',
+    '송민섭': 'ms.song@stickint.kr',
+    '이희재': 'hj.lee2@stickint.kr',
+    '김하영': 'hy.kim@stickint.kr',
 }
 
 USER_PHONE = {
     '정주호': '010-2396-2036',
-    '김유빈': '010-2396-2036',
-    '김경식': '010-2396-2036',
-    '송민섭': '010-2396-2036',
-    '이희재': '010-2396-2036',
-    '김하영': '010-2396-2036',
+    '김유빈': '010-4008-6098',
+    '김경식': '010-7364-1023',
+    '송민섭': '010-3013-0303',
+    '이희재': '010-8993-1280',
+    '김하영': '010-6213-6178',
 }
 
 def getRedisClient():
@@ -85,20 +85,27 @@ def sendMessage(listItem):
         'Content-Type': 'application/x-www-form-urlencoded'
     })
 
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
+
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
+
 def sendEmail(listItem):
     sendEmail = os.getenv('GMAIL_EMAIL')
     sendPassword = os.getenv('GMAIL_PASSWORD')
     results = []
 
-    s = smtplib.SMTP_SSL('smtp.gmail.com')
+    s = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     s.login(sendEmail, sendPassword)
 
     for item in listItem:
-        print(item)
         msg = MIMEMultipart('alternative')
         msg['Subject'] = f"[{item['name']}/STICK] {item['date']} {item['vacation_type']} 알림"
         msg['From'] = item['email']
-        msg['To'] = os.getenv('SEND_EMAIL')
+        msg['To'] = 'stickdev@stickint.com'
         part1 = MIMEText(makeHtml(item), 'html')
         msg.attach(part1)
         s.sendmail(sendEmail, USER_EMAIL['정주호'], msg.as_string())
@@ -163,6 +170,8 @@ if __name__ == '__main__':
         }
 
         today = datetime.datetime.today().strftime('%Y-%m-%d')
+
+        today = '2022-04-08'
 
         boardReq = s.get(
             url=f'https://hr-work-api.office.hiworks.com/v4/user-work-data-calendar?&&filter[work_date][gte]={today}&filter[work_date][lte]={today}&page[limit]=20&page[offset]=0',

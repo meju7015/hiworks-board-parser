@@ -61,9 +61,13 @@ def sendMessage(listItem):
         'Content-Type': 'application/x-www-form-urlencoded'
     })
 
-    '''requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
         'Content-Type': 'application/x-www-form-urlencoded'
-    })'''
+    })
+
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
 
 def __get_logger():
     with open('logging.config.json', 'rt') as file:

@@ -122,6 +122,10 @@ if __name__ == '__main__':
                     'Content-Type': 'application/x-www-form-urlencoded'
                 })
 
+                requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                })
+
                 setCache(
                     json.dumps(json.loads(boardReq.content))
                 )

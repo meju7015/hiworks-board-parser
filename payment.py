@@ -71,6 +71,14 @@ def sendMessage(listItem):
         'Content-Type': 'application/x-www-form-urlencoded'
     })
 
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
+
+    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
+        'Content-Type': 'application/x-www-form-urlencoded'
+    })
+
 def sendEmail(listItem):
     sendEmail = os.getenv('GMAIL_EMAIL')
     sendPassword = os.getenv('GMAIL_PASSWORD')
