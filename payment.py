@@ -150,9 +150,7 @@ if __name__ == '__main__':
             'limit': 7
         }
 
-        #today = datetime.datetime.today().strftime('%Y-%m-%d')
-
-        today = '2022-04-08'
+        today = datetime.datetime.today().strftime('%Y-%m-%d')
 
         boardReq = s.get(
             url=f'https://hr-work-api.office.hiworks.com/v4/user-work-data-calendar?&&filter[work_date][gte]={today}&filter[work_date][lte]={today}&page[limit]=20&page[offset]=0',
