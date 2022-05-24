@@ -117,8 +117,7 @@ if __name__ == '__main__':
 
         for i, item in enumerate(nextContent['result']['list']):
             # 리스트의 예약 내용이 증가했으면 ?
-            if 'BKCP' in item['booking_info'] \
-                    and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
+            if 'BKCP' in item['booking_info'] and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
                 # 새로 들어온예약이 무엇인지 찾아보자
                 for n in range(len(item['booking_info']['BKCP'])):
                     isContinue = False

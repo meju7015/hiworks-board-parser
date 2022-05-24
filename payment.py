@@ -1,132 +1,21 @@
-import datetime
-import hashlib
-
-from bs4 import BeautifulSoup as bs
 from fake_useragent import UserAgent
 from datetime import date
 import requests
 import json
-import redis
-from urllib import parse
-from prettyprinter import pprint
-
-import logging
-import logging.config
 import os
 
 from dotenv import load_dotenv
 
 import datetime
-import codecs
 
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from src.config import LOGIN_INFO, SEND_LIST
+from src.sender import getLogger, sendMessage, setCache, makeVacationContent
 
 load_dotenv(verbose=True)
 
-LOGIN_INFO = {
-    'office_id': os.getenv('HI_WORKS_ID'),
-    'office_passwd': os.getenv('HI_WORKS_PW'),
-    'ssl_login': 'Y',
-    'ip_security': 1
-}
-
-USER_EMAIL = {
-    '정주호': 'mason.jeong@stickint.kr',
-}
-
-def getRedisClient():
-    return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), decode_responses=True)
-
-def getCache():
-    client = getRedisClient()
-    return client.get('util.hiworks.resolve.list')
-
-def setCache(item):
-    client = getRedisClient()
-    return client.set('util.hiworks.resolve.list', item)
-
-def merge(oldList, newList):
-    lists = []
-    for i in newList:
-        if i not in oldList:
-            lists.append(i)
-
-    return lists
-
-def sendMessage(listItem):
-    postViewBody = ''
-    for item in listItem:
-        postViewBody += f"{item['name']}님이 오늘 {item['vacation_type']} 입니다.\n"
-
-    content = '/자리비움/ Hi-Works 휴가 알림\n'
-    content += '날짜 : ' + datetime.datetime.today().strftime('%Y년 %m월 %d일') + '\n'
-    content += postViewBody
-    content = parse.quote(content)
-
-    send = 'content=' + content
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-def sendEmail(listItem):
-    sendEmail = os.getenv('GMAIL_EMAIL')
-    sendPassword = os.getenv('GMAIL_PASSWORD')
-    results = []
-
-    s = smtplib.SMTP_SSL('smtp.gmail.com')
-    s.login(sendEmail, sendPassword)
-
-    for item in listItem:
-        print(item)
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = f"[{item['name']}/STICK] {item['date']} 부재 알림"
-        msg['From'] = os.getenv('SEND_EMAIL')
-        msg['To'] = item['email']
-        part1 = MIMEText(makeHtml(item), 'html')
-        msg.attach(part1)
-        s.sendmail(sendEmail, USER_EMAIL['정주호'], msg.as_string())
-        s.quit()
-    return
-
-def makeHtml(user):
-    f = codecs.open('resource/vacationEmail.html', 'r', encoding='UTF8')
-    html = f.read()
-
-    html = html.replace('{name}', user['name'])
-    html = html.replace('{phone}', user['phone'])
-    html = html.replace('{vacation_type}', user['vacation_type'])
-    html = html.replace('{date}', user['date'])
-    html = html.replace('{email}', user['email'])
-
-    if 'hours' in user:
-        html = html.replace('{hours}', user['hours'])
-
-    if 'start_time' in user and 'end_time' in user:
-        html = html.replace('{start_time}', user['start_time'])
-        html = html.replace('{end_time}', user['end_time'])
-
-    return html
-
-def __get_logger():
-    with open('logging.config.json', 'rt') as file:
-        config = json.load(file)
-
-    logging.config.dictConfig(config)
-    return logging.getLogger()
 
 if __name__ == '__main__':
-    logger = __get_logger()
+    logger = getLogger()
 
     with requests.Session() as s:
         loginReq = s.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
@@ -180,48 +69,10 @@ if __name__ == '__main__':
                         if 'start_time' in vacationData and 'end_time' in vacationData:
                             vacation['vacation_type'] += f" {vacationData['start_time']} ~ {vacationData['end_time']}"
 
-
                         vacations.append(vacation)
 
-
-        sendMessage(vacations)
-
-        '''for i, item in enumerate(nextContent['result']['list']):
-            # 리스트의 예약 내용이 증가했으면 ?
-            if 'BKCP' in item['booking_info'] \
-                    and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                # 새로 들어온예약이 무엇인지 찾아보자
-                for n in range(len(item['booking_info']['BKCP'])):
-                    isContinue = False
-                    # 새로운것이 이미 뿌려졌던건지 비교
-                    for c2 in prevContent['result']['list'][i]['booking_info']['BKCP']:
-                        if c2['no'] == item['booking_info']['BKCP'][n]['no']:
-                            isContinue = True
-
-                    if isContinue:
-                        continue
-                    else:
-                        sendMessage({
-                            'name': item['name'],
-                            'user_name': item['booking_info']['BKCP'][n]['user_name'],
-                            'start': item['booking_info']['BKCP'][n]['start'],
-                            'end': item['booking_info']['BKCP'][n]['end'],
-                        })
-            # 예약이 없는 상태에서 최초 예약이 들어올경우
-            elif 'BKCP' not in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
-                # 모든게 새로들어온것이다.
-                for n in range(len(item['booking_info']['BKCP'])):
-                    sendMessage({
-                        'name': item['name'],
-                        'user_name': item['booking_info']['BKCP'][n]['user_name'],
-                        'start': item['booking_info']['BKCP'][n]['start'],
-                        'end': item['booking_info']['BKCP'][n]['end'],
-                    })
-                setCache(boardReq.content)
-            elif 'BKCP' in item['booking_info'] \
-                    and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                setCache(boardReq.content)'''
-
-        setCache(boardReq.content)
-        exit()
-
+        for list in SEND_LIST:
+            sendMessage(
+                makeVacationContent(lists=vacations),
+                url=list
+            )

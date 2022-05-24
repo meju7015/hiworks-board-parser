@@ -1,62 +1,16 @@
-import hashlib
-
-from bs4 import BeautifulSoup as bs
-from fake_useragent import UserAgent
-import requests
 import json
-import redis
-from urllib import parse
-from prettyprinter import pprint
-
-import logging
-import logging.config
 import os
 
-from dotenv import load_dotenv
+import requests
+from bs4 import BeautifulSoup as bs
+from fake_useragent import UserAgent
 
-load_dotenv(verbose=True)
-
-LOGIN_INFO = {
-    'office_id': os.getenv('HI_WORKS_ID'),
-    'office_passwd': os.getenv('HI_WORKS_PW'),
-    'ssl_login': 'Y',
-    'ip_security': 1
-}
-
-
-def getRedisClient():
-    return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), decode_responses=True)
-
-
-def getCache():
-    client = getRedisClient()
-    return client.get('util.hiworks.board.list')
-
-
-def setCache(item):
-    client = getRedisClient()
-    return client.set('util.hiworks.board.list', item)
-
-
-def merge(oldList, newList):
-    lists = []
-    for i in newList:
-        if i not in oldList:
-            lists.append(i)
-
-    return lists
-
-
-def __get_logger():
-    with open('logging.config.json', 'rt') as file:
-        config = json.load(file)
-
-    logging.config.dictConfig(config)
-    return logging.getLogger()
+from src.config import SEND_LIST, LOGIN_INFO
+from src.sender import getLogger, getCache, setCache, makeBoardContent, sendMessage
 
 
 if __name__ == '__main__':
-    logger = __get_logger()
+    logger = getLogger()
 
     with requests.Session() as s:
         loginReq = s.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
@@ -74,11 +28,11 @@ if __name__ == '__main__':
             url='https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board_ajax/getBoardContentsList',
             headers=headers)
 
-        prevContent = getCache()
+        prevContent = getCache('board')
 
         if prevContent is None:
             logger.info('no cached list data')
-            setCache(boardReq.content)
+            setCache('board', boardReq.content)
             exit()
 
         prevContent = json.loads(prevContent)
@@ -103,30 +57,13 @@ if __name__ == '__main__':
                     pass
 
                 if postViewBody is not None:
-                    postViewBody = postViewBody.text
-                    content = '/메일/ Hi-Works 게시판 알람'
-                    content += '제목 : ' + post['title'] + '\n'
-                    content += '날짜 : ' + post['write_date'] + '\n'
-                    content += '작성자 : ' + post['name']
-                    content += postViewBody
-                    content += "링크 : " + f'https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{post["fk_board_info_no"]}/{post["no"]}/new_list'
-                    content = parse.quote(content)
+                    content = makeBoardContent(list=post, body=postViewBody)
 
-                    send = 'content=' + content
-
-                requests.post(url=os.getenv('NATE_ON_WEB_HOOK'), data=send, headers={
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                })
-
-                requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                })
-
-                requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                })
+                for list in SEND_LIST:
+                    sendMessage(content=content, url=list)
 
                 setCache(
+                    'board',
                     json.dumps(json.loads(boardReq.content))
                 )
 
@@ -134,6 +71,7 @@ if __name__ == '__main__':
 
         elif int(nextContent['result']['TOTAL_CNT']) < int(prevContent['result']['TOTAL_CNT']):
             setCache(
+                'board',
                 json.dumps(json.loads(boardReq.content))
             )
 
