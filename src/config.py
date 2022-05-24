@@ -32,7 +32,7 @@ USER_PHONE = {
 HI_WORKS_CACHE = 'util.hiworks'
 
 SEND_LIST = [
-    os.getenv('NATE_ON_WEB_HOOK'),
-    os.getenv('NATE_ON_WEB_HOOK_DESIGN'),
-    os.getenv('NATE_ON_WEB_HOOK_DESIGN2'),
+    os.getenv('NATE_ON_WEB_HOOK', 'localhost'),
+    os.getenv('NATE_ON_WEB_HOOK_DESIGN', 'localhost'),
+    os.getenv('NATE_ON_WEB_HOOK_DESIGN2', 'localhost'),
 ]

@@ -64,3 +64,5 @@ def vacationAlert():
                 makeVacationContent(lists=vacations),
                 url=list
             )
+
+
