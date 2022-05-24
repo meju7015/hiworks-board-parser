@@ -102,6 +102,18 @@ def makeBoardContent(list, body):
     return content
 
 
+def makeMeetingContent(item):
+    postViewBody = f"{item['user_name']} 님이 {item['start']} ~ {item['end']} 까지 {item['name']}을 예약했습니다."
+    content = '/메일/ Hi-Works 회의실 알람\n'
+    content += f"작성자 : {item['user_name']}\n"
+    content += f"날짜 : {item['start']} ~ {item['end']}\n"
+    content += postViewBody
+    content = f"content={parse.quote(content)}"
+    return content
+
+
+
+
 def makeVacationEmailHtml(userInfo):
     fs = codecs.open('resource/vacation-email.html', 'r', encoding='UTF8')
 

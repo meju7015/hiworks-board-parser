@@ -13,7 +13,7 @@ from src.sender import getLogger, sendEmail, makeVacationMail
 
 load_dotenv(verbose=True)
 
-if __name__ == '__main__':
+def sendVacationEmail():
     logger = getLogger()
 
     with requests.Session() as s:
@@ -39,8 +39,6 @@ if __name__ == '__main__':
         }
 
         today = datetime.datetime.today().strftime('%Y-%m-%d')
-
-        today = '2022-04-08'
 
         boardReq = s.get(
             url=f'https://hr-work-api.office.hiworks.com/v4/user-work-data-calendar?&&filter[work_date][gte]={today}&filter[work_date][lte]={today}&page[limit]=20&page[offset]=0',

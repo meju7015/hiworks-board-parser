@@ -16,68 +16,13 @@ import os
 
 from dotenv import load_dotenv
 
+from src.config import LOGIN_INFO, SEND_LIST
+from src.sender import getLogger, getCache, setCache, makeMeetingContent, sendMessage
+
 load_dotenv(verbose=True)
 
-LOGIN_INFO = {
-    'office_id': os.getenv('HI_WORKS_ID'),
-    'office_passwd': os.getenv('HI_WORKS_PW'),
-    'ssl_login': 'Y',
-    'ip_security': 1
-}
-
-def getRedisClient():
-    return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), decode_responses=True)
-
-
-def getCache():
-    client = getRedisClient()
-    return client.get('util.hiworks.resolve.list')
-
-
-def setCache(item):
-    client = getRedisClient()
-    return client.set('util.hiworks.resolve.list', item)
-
-
-def merge(oldList, newList):
-    lists = []
-    for i in newList:
-        if i not in oldList:
-            lists.append(i)
-
-    return lists
-
-def sendMessage(listItem):
-    postViewBody = f'{listItem["user_name"]} 님이 {listItem["start"]} ~ {listItem["end"]} 까지 {listItem["name"]}을 예약하셨습니다.'
-    content = '/메일/ Hi-Works 회의실 예약 알람'
-    content += '날짜 : ' + listItem["start"] + ' ~ ' + listItem["end"] + '\n'
-    content += '작성자 : ' + listItem['user_name'] + '\n'
-    content += postViewBody
-    content = parse.quote(content)
-
-    send = 'content=' + content
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-    requests.post(url=os.getenv('NATE_ON_WEB_HOOK_DESIGN2'), data=send, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-
-def __get_logger():
-    with open('logging.config.json', 'rt') as file:
-        config = json.load(file)
-
-    logging.config.dictConfig(config)
-    return logging.getLogger()
-
-if __name__ == '__main__':
-    logger = __get_logger()
+def meetingAlert():
+    logger = getLogger()
 
     with requests.Session() as s:
         loginReq = s.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
@@ -107,12 +52,12 @@ if __name__ == '__main__':
             data=reqBody
         )
 
-        if getCache() is None:
+        if getCache('list') is None:
             logger.info('no cached list data : 예약시스템')
-            setCache(boardReq.content)
+            setCache('list', boardReq.content)
             exit()
 
-        prevContent = json.loads(getCache())
+        prevContent = json.loads(getCache('list'))
         nextContent = json.loads(boardReq.content)
 
         for i, item in enumerate(nextContent['result']['list']):
@@ -129,27 +74,40 @@ if __name__ == '__main__':
                     if isContinue:
                         continue
                     else:
-                        sendMessage({
+                        content = makeMeetingContent({
                             'name': item['name'],
                             'user_name': item['booking_info']['BKCP'][n]['user_name'],
                             'start': item['booking_info']['BKCP'][n]['start'],
                             'end': item['booking_info']['BKCP'][n]['end'],
                         })
+
+                        for url in SEND_LIST:
+                            sendMessage(
+                                content=content,
+                                url=url
+                            )
+
             # 예약이 없는 상태에서 최초 예약이 들어올경우
             elif 'BKCP' not in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
                 # 모든게 새로들어온것이다.
                 for n in range(len(item['booking_info']['BKCP'])):
-                    sendMessage({
+                    content = makeMeetingContent({
                         'name': item['name'],
                         'user_name': item['booking_info']['BKCP'][n]['user_name'],
                         'start': item['booking_info']['BKCP'][n]['start'],
                         'end': item['booking_info']['BKCP'][n]['end'],
                     })
-                setCache(boardReq.content)
+
+                    for url in SEND_LIST:
+                        sendMessage(
+                            content=content,
+                            url=url
+                        )
+
+                setCache('list', boardReq.content)
             elif 'BKCP' in item['booking_info'] \
                     and len(item['booking_info']['BKCP']) < len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                setCache(boardReq.content)
+                setCache('list', boardReq.content)
 
-        setCache(boardReq.content)
-        exit()
+        setCache('list', boardReq.content)
 
