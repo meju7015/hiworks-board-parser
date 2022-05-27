@@ -53,7 +53,6 @@ def meetingAlert():
         )
 
         if getCache('list') is None:
-            logger.info('no cached list data : 예약시스템')
             setCache('list', boardReq.content)
             exit()
 
@@ -61,12 +60,12 @@ def meetingAlert():
         nextContent = json.loads(boardReq.content)
 
         for i, item in enumerate(nextContent['result']['list']):
-            # 리스트의 예약 내용이 증가했으면 ?
-            if 'BKCP' in item['booking_info'] and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
-                # 새로 들어온예약이 무엇인지 찾아보자
+            # 리스트 의 예약 내용이 증가 했으면 ?
+            if 'BKCP' in item['booking_info'] and 'BKCP' in prevContent['result']['list'][i]['booking_info'] and len(item['booking_info']['BKCP']) > len(prevContent['result']['list'][i]['booking_info']['BKCP']):
+                # 새로 들어온 예약이 무엇 인지 찾아 보자
                 for n in range(len(item['booking_info']['BKCP'])):
                     isContinue = False
-                    # 새로운것이 이미 뿌려졌던건지 비교
+                    # 새로운 것이 이미 뿌려 졌던 건지 비교
                     for c2 in prevContent['result']['list'][i]['booking_info']['BKCP']:
                         if c2['no'] == item['booking_info']['BKCP'][n]['no']:
                             isContinue = True
