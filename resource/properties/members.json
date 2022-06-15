@@ -7,6 +7,7 @@
         {
           "user_no": "111790",
           "user_name": "김택기",
+          "user_name_en": "-",
           "user_id": "tk.kim",
           "position_no": "172618",
           "job_no": "0",
@@ -14,6 +15,7 @@
           "node_id": "57369",
           "node_name": "대표이사",
           "position_code": "대표이사",
+          "email": "",
           "phone": "010-6353-6323"
         }
       ],
@@ -28,6 +30,7 @@
         {
           "user_no": "76464",
           "user_name": "김정훈",
+          "user_name_en": "-",
           "user_id": "stick2009",
           "position_no": "227449",
           "job_no": "0",
@@ -35,11 +38,13 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "실장",
+          "email": "",
           "phone": "010-8912-0663"
         },
         {
           "user_no": "109943",
           "user_name": "이이슬",
+          "user_name_en": "-",
           "user_id": "ls.lee",
           "position_no": "172615",
           "job_no": "0",
@@ -47,11 +52,13 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "차장",
+          "email": "",
           "phone": "010-4445-7185"
         },
         {
           "user_no": "109944",
           "user_name": "김민지",
+          "user_name_en": "-",
           "user_id": "mj.kim",
           "position_no": "222294",
           "job_no": "0",
@@ -59,11 +66,13 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "주임",
+          "email": "",
           "phone": "010-7297-3027"
         },
         {
           "user_no": "134312",
           "user_name": "박창렬",
+          "user_name_en": "-",
           "user_id": "cr.park",
           "position_no": "172615",
           "job_no": "0",
@@ -71,11 +80,13 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "차장",
+          "email": "",
           "phone": "010-2031-1530"
         },
         {
           "user_no": "143188",
           "user_name": "한경아",
+          "user_name_en": "-",
           "user_id": "ka.han",
           "position_no": "172614",
           "job_no": "0",
@@ -83,11 +94,13 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "과장",
+          "email": "",
           "phone": "010-5691-1477"
         },
         {
           "user_no": "126061",
           "user_name": "박재협",
+          "user_name_en": "-",
           "user_id": "jh.park",
           "position_no": "172613",
           "job_no": "0",
@@ -95,6 +108,7 @@
           "node_id": "71127",
           "node_name": "경영기획실",
           "position_code": "대리",
+          "email": "",
           "phone": "010-7161-6757"
         }
       ],
@@ -109,6 +123,7 @@
         {
           "user_no": "111497",
           "user_name": "오세동",
+          "user_name_en": "-",
           "user_id": "sd.oh",
           "position_no": "172617",
           "job_no": "0",
@@ -116,6 +131,7 @@
           "node_id": "91033",
           "node_name": "마케팅 1본부",
           "position_code": "이사",
+          "email": "",
           "phone": "010-4524-2090"
         }
       ],
@@ -138,6 +154,7 @@
           "node_id": "91034",
           "node_name": "P&M 비즈니스 부문",
           "position_code": "국장",
+          "email": "",
           "phone": "010-3668-8457"
         }
       ],
@@ -160,6 +177,7 @@
           "node_id": "91035",
           "node_name": "P&M 1팀",
           "position_code": "차장",
+          "email": "",
           "phone": "010-6626-0262"
         },
         {
@@ -173,6 +191,7 @@
           "node_id": "91035",
           "node_name": "P&M 1팀",
           "position_code": "과장",
+          "email": "",
           "phone": "010-9038-8605"
         },
         {
@@ -186,6 +205,7 @@
           "node_id": "91035",
           "node_name": "P&M 1팀",
           "position_code": "대리",
+          "email": "",
           "phone": "010-4614-6264"
         }
       ],
@@ -208,6 +228,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "차장",
+          "email": "",
           "phone": "010-8487-5218"
         },
         {
@@ -221,6 +242,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "과장",
+          "email": "",
           "phone": "010-5117-2276"
         },
         {
@@ -234,6 +256,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "과장",
+          "email": "",
           "phone": "010-4902-4901"
         },
         {
@@ -247,6 +270,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "주임",
+          "email": "",
           "phone": "010-2650-4279"
         },
         {
@@ -260,6 +284,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "사원",
+          "email": "",
           "phone": "010-3494-1213"
         },
         {
@@ -273,6 +298,7 @@
           "node_id": "91036",
           "node_name": "P&M 2팀",
           "position_code": "대리",
+          "email": "",
           "phone": "010-2110-0857"
         }
       ],
@@ -295,6 +321,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "과장",
+          "email": "",
           "phone": "010-2396-2036"
         },
         {
@@ -308,6 +335,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "대리",
+          "email": "",
           "phone": "010-7364-1023"
         },
         {
@@ -321,6 +349,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "대리",
+          "email": "",
           "phone": "010-7364-1023"
         },
         {
@@ -334,6 +363,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "대리",
+          "email": "",
           "phone": "010-8993-1280"
         },
         {
@@ -347,6 +377,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "사원",
+          "email": "",
           "phone": "010-3013-0303"
         },
         {
@@ -360,6 +391,7 @@
           "node_id": "91037",
           "node_name": "개발운영팀",
           "position_code": "사원",
+          "email": "",
           "phone": "010-6213-6178"
         }
       ],
@@ -374,12 +406,15 @@
         {
           "user_no": "112017",
           "user_name": "안지훈",
+          "user_name_en": "-",
           "user_id": "jh.an",
           "position_no": "172616",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91038",
           "node_name": "개발전략팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         }
       ],
@@ -402,111 +437,141 @@
         {
           "user_no": "111519",
           "user_name": "강진아",
+          "user_name_en": "-",
           "user_id": "ja.kang",
           "position_no": "172616",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         },
         {
           "user_no": "135959",
           "user_name": "김보경",
+          "user_name_en": "-",
           "user_id": "bk.kim",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "111794",
           "user_name": "황지선",
+          "user_name_en": "-",
           "user_id": "js.hwang",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "121483",
           "user_name": "강경석",
+          "user_name_en": "-",
           "user_id": "ks.kang",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "140260",
           "user_name": "최성규",
+          "user_name_en": "-",
           "user_id": "sk.choi",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "145339",
           "user_name": "권동혁",
+          "user_name_en": "-",
           "user_id": "dh.kwon",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "124973",
           "user_name": "김선우",
+          "user_name_en": "-",
           "user_id": "sw.kim",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "142555",
           "user_name": "서윤재",
+          "user_name_en": "-",
           "user_id": "yj.seo",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         },
         {
           "user_no": "147276",
           "user_name": "이지현",
+          "user_name_en": "-",
           "user_id": "jih.lee",
           "position_no": "230191",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "인턴"
         },
         {
           "user_no": "140899",
           "user_name": "최희정",
+          "user_name_en": "-",
           "user_id": "hj.choi",
           "position_no": "230191",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91040",
           "node_name": "퍼포먼스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "인턴"
         }
       ],
@@ -521,100 +586,127 @@
         {
           "user_no": "120184",
           "user_name": "이병웅",
+          "user_name_en": "-",
           "user_id": "bw.lee",
           "position_no": "172616",
           "job_no": "172619",
           "org_admin_flag": "Y",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         },
         {
           "user_no": "111795",
           "user_name": "현대경",
+          "user_name_en": "-",
           "user_id": "dk.hyun",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "111797",
           "user_name": "서누리",
+          "user_name_en": "-",
           "user_id": "nr.seo",
           "position_no": "172613",
           "job_no": "172619",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "132989",
           "user_name": "한사랑",
+          "user_name_en": "-",
           "user_id": "sr.han",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "124979",
           "user_name": "최승민",
+          "user_name_en": "-",
           "user_id": "sm.choi",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "134942",
           "user_name": "김종민",
+          "user_name_en": "-",
           "user_id": "jm.kim02",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         },
         {
           "user_no": "140901",
           "user_name": "양지현",
+          "user_name_en": "-",
           "user_id": "jh.yang",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         },
         {
           "user_no": "142549",
           "user_name": "양우미",
+          "user_name_en": "-",
           "user_id": "um.yang",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         },
         {
           "user_no": "142232",
           "user_name": "홍혜민",
+          "user_name_en": "-",
           "user_id": "hm.hong",
           "position_no": "230191",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91041",
           "node_name": "퍼포먼스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "인턴"
         }
       ],
@@ -629,56 +721,71 @@
         {
           "user_no": "141827",
           "user_name": "이세진",
+          "user_name_en": "-",
           "user_id": "sj.lee",
           "position_no": "172616",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91042",
           "node_name": "퍼포먼스 제작팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         },
         {
           "user_no": "143852",
           "user_name": "한미연",
+          "user_name_en": "-",
           "user_id": "my.han",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91042",
           "node_name": "퍼포먼스 제작팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "144094",
           "user_name": "조대연",
+          "user_name_en": "-",
           "user_id": "dy.cho",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91042",
           "node_name": "퍼포먼스 제작팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "144306",
           "user_name": "이나라",
+          "user_name_en": "-",
           "user_id": "nr.lee",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91042",
           "node_name": "퍼포먼스 제작팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "144307",
           "user_name": "원인영",
+          "user_name_en": "-",
           "user_id": "iy.won",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91042",
           "node_name": "퍼포먼스 제작팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         }
       ],
@@ -693,12 +800,15 @@
         {
           "user_no": "147642",
           "user_name": "설진환",
+          "user_name_en": "-",
           "user_id": "jh.seol",
           "position_no": "230189",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91043",
           "node_name": "마케팅 3본부",
+          "email": "",
+          "phone": "",
           "position_code": "본부장"
         }
       ],
@@ -713,23 +823,29 @@
         {
           "user_no": "111871",
           "user_name": "김대철",
+          "user_name_en": "-",
           "user_id": "dc.kim",
           "position_no": "224904",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91044",
           "node_name": "디지털마케팅 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "국장"
         },
         {
           "user_no": "111980",
           "user_name": "최철승",
+          "user_name_en": "-",
           "user_id": "cs.choi",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91044",
           "node_name": "디지털마케팅 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         }
       ],
@@ -744,34 +860,43 @@
         {
           "user_no": "118423",
           "user_name": "송은경",
+          "user_name_en": "-",
           "user_id": "ek.song",
           "position_no": "172615",
           "job_no": "172619",
           "org_admin_flag": "Y",
           "node_id": "91045",
           "node_name": "디지털마케팅 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "118424",
           "user_name": "유은지",
+          "user_name_en": "-",
           "user_id": "yej",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91045",
           "node_name": "디지털마케팅 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "147344",
           "user_name": "장지혜",
+          "user_name_en": "-",
           "user_id": "jh.jang",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91045",
           "node_name": "디지털마케팅 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         }
       ],
@@ -786,111 +911,141 @@
         {
           "user_no": "131301",
           "user_name": "최다함",
+          "user_name_en": "-",
           "user_id": "dh.choi",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "132346",
           "user_name": "송진희",
+          "user_name_en": "-",
           "user_id": "jh.song",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "111997",
           "user_name": "김건우",
+          "user_name_en": "-",
           "user_id": "gw.kim",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "129101",
           "user_name": "김은지",
+          "user_name_en": "-",
           "user_id": "eji.kim",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "147345",
           "user_name": "이신형",
+          "user_name_en": "-",
           "user_id": "sh.lee",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "145340",
           "user_name": "김승윤",
+          "user_name_en": "-",
           "user_id": "sy.kim",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "112003",
           "user_name": "정채원",
+          "user_name_en": "-",
           "user_id": "cw.jeong",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "133791",
           "user_name": "이동화",
+          "user_name_en": "-",
           "user_id": "dh.lee",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "111983",
           "user_name": "전준배",
+          "user_name_en": "-",
           "user_id": "jb.jeon",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "124983",
           "user_name": "김유진",
+          "user_name_en": "-",
           "user_id": "yj.kim",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91046",
           "node_name": "디지털마케팅 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         }
       ],
@@ -913,12 +1068,15 @@
         {
           "user_no": "111985",
           "user_name": "유건화",
+          "user_name_en": "-",
           "user_id": "gh.yoo",
           "position_no": "230190",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91048",
           "node_name": "디지털 비즈니스 부문",
+          "email": "",
+          "phone": "",
           "position_code": "부국장"
         }
       ],
@@ -933,56 +1091,71 @@
         {
           "user_no": "111990",
           "user_name": "계민경",
+          "user_name_en": "-",
           "user_id": "mk.kye",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91049",
           "node_name": "디지털 비즈니스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "111991",
           "user_name": "황은진",
+          "user_name_en": "-",
           "user_id": "ej.hwang",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91049",
           "node_name": "디지털 비즈니스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "111992",
           "user_name": "이수연",
+          "user_name_en": "-",
           "user_id": "sy.lee",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91049",
           "node_name": "디지털 비즈니스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "119400",
           "user_name": "김은영",
+          "user_name_en": "-",
           "user_id": "ey.kim",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91049",
           "node_name": "디지털 비즈니스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "147684",
           "user_name": "이상미",
+          "user_name_en": "-",
           "user_id": "sm.lee",
           "position_no": "230191",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91049",
           "node_name": "디지털 비즈니스 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "인턴"
         }
       ],
@@ -997,45 +1170,57 @@
         {
           "user_no": "111988",
           "user_name": "김지용",
+          "user_name_en": "-",
           "user_id": "jy.kim",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91050",
           "node_name": "디지털 비즈니스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "124580",
           "user_name": "이미현",
+          "user_name_en": "-",
           "user_id": "mh.lee",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91050",
           "node_name": "디지털 비즈니스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "141562",
           "user_name": "정유진",
+          "user_name_en": "-",
           "user_id": "yj.jung",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91050",
           "node_name": "디지털 비즈니스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "131500",
           "user_name": "박유림",
+          "user_name_en": "-",
           "user_id": "yurim.park",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91050",
           "node_name": "디지털 비즈니스 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         }
       ],
@@ -1050,34 +1235,43 @@
         {
           "user_no": "123519",
           "user_name": "박지영",
+          "user_name_en": "-",
           "user_id": "jy.park",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91051",
           "node_name": "디지털 비즈니스 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "111982",
           "user_name": "김은정",
+          "user_name_en": "-",
           "user_id": "ej.kim",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91051",
           "node_name": "디지털 비즈니스 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "124984",
           "user_name": "문나은",
+          "user_name_en": "-",
           "user_id": "ne.moon",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91051",
           "node_name": "디지털 비즈니스 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         }
       ],
@@ -1092,23 +1286,29 @@
         {
           "user_no": "111872",
           "user_name": "허정",
+          "user_name_en": "-",
           "user_id": "j.heo",
           "position_no": "172616",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91052",
           "node_name": "브랜드 전략팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         },
         {
           "user_no": "137693",
           "user_name": "승은영",
+          "user_name_en": "-",
           "user_id": "ey.seung",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91052",
           "node_name": "브랜드 전략팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         }
       ],
@@ -1123,12 +1323,15 @@
         {
           "user_no": "111993",
           "user_name": "이두익",
+          "user_name_en": "-",
           "user_id": "duick.lee",
           "position_no": "230190",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91053",
           "node_name": "크리에이티브 센터",
+          "email": "",
+          "phone": "",
           "position_code": "부국장"
         }
       ],
@@ -1143,45 +1346,57 @@
         {
           "user_no": "129847",
           "user_name": "김미진",
+          "user_name_en": "-",
           "user_id": "mj.kim2",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91054",
           "node_name": "크리에이티브 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "130488",
           "user_name": "신은비",
+          "user_name_en": "-",
           "user_id": "eb.shin",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91054",
           "node_name": "크리에이티브 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "140898",
           "user_name": "김지희",
+          "user_name_en": "-",
           "user_id": "jh.kim",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91054",
           "node_name": "크리에이티브 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "148951",
           "user_name": "김태우",
+          "user_name_en": "-",
           "user_id": "tw.kim",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91054",
           "node_name": "크리에이티브 1팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         }
       ],
@@ -1196,78 +1411,99 @@
         {
           "user_no": "112008",
           "user_name": "정소이",
+          "user_name_en": "-",
           "user_id": "soy.jeong",
           "position_no": "172616",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "부장"
         },
         {
           "user_no": "112010",
           "user_name": "강희정",
+          "user_name_en": "-",
           "user_id": "hj.kang",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "112009",
           "user_name": "김태영",
+          "user_name_en": "-",
           "user_id": "ty.kim",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "112011",
           "user_name": "이아름",
+          "user_name_en": "-",
           "user_id": "ar.lee",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         },
         {
           "user_no": "128913",
           "user_name": "박미진",
+          "user_name_en": "-",
           "user_id": "mj.park",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "143853",
           "user_name": "송지은",
+          "user_name_en": "-",
           "user_id": "je.song",
           "position_no": "172613",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "대리"
         },
         {
           "user_no": "147870",
           "user_name": "백성진",
+          "user_name_en": "-",
           "user_id": "sj.beak",
           "position_no": "172614",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91055",
           "node_name": "크리에이티브 2팀",
+          "email": "",
+          "phone": "",
           "position_code": "과장"
         }
       ],
@@ -1282,34 +1518,43 @@
         {
           "user_no": "111995",
           "user_name": "정주화",
+          "user_name_en": "-",
           "user_id": "jooh.jung",
           "position_no": "172615",
           "job_no": "0",
           "org_admin_flag": "Y",
           "node_id": "91056",
           "node_name": "크리에이티브 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "차장"
         },
         {
           "user_no": "141563",
           "user_name": "유예지",
+          "user_name_en": "-",
           "user_id": "yj.yu",
           "position_no": "222294",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91056",
           "node_name": "크리에이티브 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "주임"
         },
         {
           "user_no": "135376",
           "user_name": "이민희",
+          "user_name_en": "-",
           "user_id": "mh.lee2",
           "position_no": "172612",
           "job_no": "0",
           "org_admin_flag": "N",
           "node_id": "91056",
           "node_name": "크리에이티브 3팀",
+          "email": "",
+          "phone": "",
           "position_code": "사원"
         }
       ],
