@@ -9,73 +9,90 @@ from dotenv import load_dotenv
 
 import datetime
 from src.config import LOGIN_INFO, USER_EMAIL, USER_PHONE
-from src.sender import getLogger, sendEmail, makeVacationMail
+from src.sender import getLogger, sendEmail, makeVacationMail, loginWith, getMembers, getCompInfo
+
+from bs4 import BeautifulSoup as bs
+import re
+
 
 load_dotenv(verbose=True)
 
 def sendVacationEmail():
     logger = getLogger()
 
-    with requests.Session() as s:
-        loginReq = s.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
+    with requests.Session() as http:
+        loginWith(http)
+        today = datetime.datetime.now()
+        members = getMembers(http)
 
-        if loginReq.status_code != 200:
-            logger.error('hi-works login failed - confirm id/pw')
-            raise Exception('로그인 정보가 일치하지 않습니다.')
-
-        headers = {
-            'referer': 'https://hr-work.office.hiworks.com/',
-            'User-Agent': UserAgent().chrome,
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        }
-
-        reqBody = {
-            'category_no': 7500,
-            'resource_type': 'T',
-            'date': date.today().strftime('%Y-%m-%d'),
-            'booking_search_name': '',
-            'page': 1,
-            'limit': 7
-        }
-
-        today = datetime.datetime.today().strftime('%Y-%m-%d')
-
-        boardReq = s.get(
-            url=f'https://hr-work-api.office.hiworks.com/v4/user-work-data-calendar?&&filter[work_date][gte]={today}&filter[work_date][lte]={today}&page[limit]=20&page[offset]=0',
-            headers=headers,
-            data=reqBody
+        response = http.get(
+            url=f"https://hr-work-api.office.hiworks.com/v4/vacation-calendar?filter[year]={today.year}&filter[month]={today.month}&&page[limit]=600&page[offset]=0",
+            headers={
+                'referer': 'https://hr-work.office.hiworks.com/',
+                'User-Agent': UserAgent().chrome,
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            }
         )
 
-        contents = json.loads(boardReq.content)
-
         vacations = []
+        lists = json.loads(response.content)
 
-        for i, item in enumerate(contents['data']):
-            for userWorkData in item['user_work_data']:
-                if 'vacation_data' in userWorkData:
-                    for vacationData in userWorkData['vacation_data']:
-                        print(item['name'])
-                        if item['name'] not in USER_EMAIL:
-                            continue
+        for i, item in enumerate(lists['data']):
+            if today.strftime('%Y-%m-%d') == item['date']:
+                member = next((m for m in members if int(m['id']) == int(item['office_user_no'])), None)
 
-                        vacation = {
-                            'name': item['name'],
-                            'date': today,
-                            'vacation_type': vacationData['vacation_type_title'],
-                            'email': USER_EMAIL[item['name']],
-                            'phone': USER_PHONE[item['name']]
-                        }
+                response = http.post(
+                    url='https://hr.office.hiworks.com/stickint.onhiworks.com/insa/org_ajax/',
+                    data={
+                        'pMenu': 'org_member_info',
+                        'pUserNo': item['office_user_no'],
+                        'pCallback': 'OrgMember.resultOrgMemberInfo'
+                    },
+                    headers={
+                        'referer': 'https://hr.office.hiworks.com/stickint.onhiworks.com/insa/info/member/hr_lists',
+                        'User-Agent': UserAgent().chrome,
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    }
+                )
 
-                        if 'hours' in vacationData:
-                            vacation['vacation_type'] = "반차"
-                            vacation['vacation_type'] += f"({vacationData['hours']}시간)"
+                html = json.loads(response.content)['result']
 
-                        if 'start_time' in vacationData and 'end_time' in vacationData:
-                            vacation['vacation_type'] += f" {vacationData['start_time']} ~ {vacationData['end_time']}"
+                # 휴대폰 번호 찾기
+                soup = bs(html, 'html.parser')
+                regex = re.compile(r'010-\d{4}-\d{4}')
+                content = soup.find(lambda tag: tag.name == 'span' and regex.findall(tag.text))
+                phone = content.getText()
+                compInfo = getCompInfo()['lists']
+                memberInfo = {}
 
-                        print(sendEmail(
-                            from_addr=os.getenv('GMAIL_EMAIL', 'mason.jeong@stickint.kr'),
-                            to_addrs=[os.getenv('STICK_DEV_EMAIL', 'stickdev@stickint.com')],
-                            content=makeVacationMail(info=vacation)
-                        ))
+                for teamInfo in compInfo:
+                    memberInfo = next((m for m in teamInfo['user_list'] if int(m['user_no']) == int(item['office_user_no'])), None)
+                    if memberInfo is not None:
+                        break
+
+                vacation = {
+                    'name': member['attributes']['name'],
+                    'date': item['date'],
+                    'vacation_type': item['vacation_type_title'],
+                    'email': f"{member['attributes']['account_id']}@stickint.com",
+                    'phone': phone,
+                    'teamName': memberInfo['node_name'],
+                    'eName': memberInfo['user_name_en'],
+                    'positionCode': memberInfo['position_code'],
+                }
+
+                # 휴가 타입이 연차인 경우
+                if item['type'] == 'hours':
+                    vacation['vacation_type'] = f"반차({item['hours']}시간) {item['start_time']} ~ {item['end_time']})"
+                    vacation['start_time'] = item['start_time']
+                    vacation['end_time'] = item['end_time']
+
+                result = sendEmail(
+                    from_addr=os.getenv('GMAIL_EMAIL', 'mason.jeong@stickint.kr'),
+                    to_addrs=[os.getenv('STICK_DEV_EMAIL', 'mason.jeong@stickint.kr')],
+                    content=makeVacationMail(info=vacation)
+                )
+
+                print(f"메일 전송 결과 : {result}")
+                logger.info(f"메일 전송 결과 : {result}")
 

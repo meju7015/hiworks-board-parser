@@ -15,11 +15,16 @@ import requests
 import logging
 import logging.config
 from dotenv import load_dotenv
+from fake_useragent import UserAgent
 
-from src.config import HI_WORKS_CACHE
+from src.config import HI_WORKS_CACHE, LOGIN_INFO, SEND_LIST
 
 load_dotenv(verbose=True)
 
+def getCompInfo():
+    with open('resource/properties/members.json', 'rt', encoding='UTF8') as file:
+        members = json.load(file)
+    return members
 
 def getLogger():
     with open('logging.config.json', 'rt') as file:
@@ -112,8 +117,6 @@ def makeMeetingContent(item):
     return content
 
 
-
-
 def makeVacationEmailHtml(userInfo):
     fs = codecs.open('resource/vacation-email.html', 'r', encoding='UTF8')
 
@@ -123,6 +126,9 @@ def makeVacationEmailHtml(userInfo):
     html = html.replace('{vacation_type}', userInfo['vacation_type'])
     html = html.replace('{date}', userInfo['date'])
     html = html.replace('{email}', userInfo['email'])
+    html = html.replace('{eName}', userInfo['eName'])
+    html = html.replace('{teamName}', userInfo['teamName'])
+    html = html.replace('{positionCode}', userInfo['positionCode'])
 
     if 'start_time' in userInfo and 'end_time' in userInfo:
         html = html.replace(
@@ -147,11 +153,49 @@ def makeVacationEmailHtml(userInfo):
 
 def makeVacationMail(info):
     message = MIMEMultipart('alternative')
-    message['Subject'] = f"[{info['name']}/STICK] {info['date']} {info['vacation_type']} 알림"
-    message['To'] = os.getenv('STICK_DEV_EMAIL', 'stickdev@stickint.com')
+    message['Subject'] = f"[{info['name']}/Stick] {info['date']} {info['vacation_type']} 알림"
+    message['To'] = os.getenv('STICK_DEV_EMAIL', 'mason.jeong@stickint.kr')
 
     attachContent = MIMEText(makeVacationEmailHtml(userInfo=info), 'html')
     message.attach(attachContent)
 
     return message
 
+
+def loginWith(http):
+    logger = getLogger()
+
+    response = http.post('https://office.hiworks.com/stickint.onhiworks.com/home/ssl_login', data=LOGIN_INFO)
+
+    if response.status_code != 200:
+        logger.error('hi-work login failed - confirm id/pw')
+        raise Exception('로그인 정보가 일치하지 않습니다.')
+
+    return True
+
+
+def getMembers(http):
+    headers = {
+        'referer': 'https://hr-work.office.hiworks.com/',
+        'User-Agent': UserAgent().chrome,
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    }
+
+    response = http.get(
+        url="https://office-account-api.office.hiworks.com/v3/users?filter[with_inactivated]=Y&filter[with_deleted]=Y&fields[users]=account_id,email,hiworks_account_no,is_active,is_deleted,is_office_admin,is_registed,name",
+        headers=headers
+    )
+
+    if response.status_code != 200:
+        raise Exception('멤버 리스트 통신 실패')
+
+    return json.loads(response.content)['data']
+
+
+def sendList(contents):
+    for url in SEND_LIST:
+        if url is not None:
+            sendMessage(
+                contents,
+                url
+            )
