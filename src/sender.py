@@ -57,8 +57,12 @@ def merge(old, new):
 
 
 def sendMessage(content, url):
-    requests.post(url=url, data=content, headers={
-        'Content-Type': 'application/x-www-form-urlencoded'
+    data = {
+        "markdown": content
+    }
+
+    response = requests.post(url=url, data=json.dumps(data), headers={
+        'Content-Type': 'application/json'
     })
 
 
@@ -82,38 +86,35 @@ def makeVacationContent(lists):
     postViewBody = ''
 
     for list in lists:
-        postViewBody += f"{list['name']}님이 오늘{list['vacation_type']} 입니다.\n"
+        postViewBody += f"**{list['name']}**님이 오늘**{list['vacation_type']}** 입니다.\n"
 
     if len(lists) < 1:
         postViewBody += "오늘 휴가자는 없습니다.\n"
 
-    content = '/자리비움/ Hi-Works 휴가 알림\n'
+    content = '### 🟢 Hi-Works 휴가 알림\n'
     content += f"날짜 : {datetime.datetime.today().strftime('%Y년 %m월 %d일')} \n"
     content += postViewBody
-    content = f"content={parse.quote(content)}"
 
     return content
 
 
 def makeBoardContent(list, body):
     postViewBody = body.text
-    content = '/메일/ Hi-Works 게시판 알람'
-    content += f"제목 : {list['title']}\n"
-    content += f"날짜 : {list['write_date']}\n"
-    content += f"작성자 : {list['name']}\n"
+    content = '### 🟢 Hi-Works 게시판 알람'
+    content += f"**제목** : {list['title']}\n"
+    content += f"**날짜** : {list['write_date']}\n"
+    content += f"**작성자** : {list['name']}\n"
     content += postViewBody
-    content += f"링크 : https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list"
-    content = f"content={parse.quote(content)}"
+    content += f"**링크** : https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list"
     return content
 
 
 def makeMeetingContent(item):
     postViewBody = f"{item['user_name']} 님이 {item['start']} ~ {item['end']} 까지 {item['name']}을 예약했습니다."
-    content = '/메일/ Hi-Works 회의실 알람\n'
-    content += f"작성자 : {item['user_name']}\n"
-    content += f"날짜 : {item['start']} ~ {item['end']}\n"
+    content = '### 🟢 Hi-Works 회의실 알람\n'
+    content += f"**작성자** : {item['user_name']}\n"
+    content += f"**날짜** : {item['start']} ~ {item['end']}\n"
     content += postViewBody
-    content = f"content={parse.quote(content)}"
     return content
 
 

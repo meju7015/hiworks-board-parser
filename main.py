@@ -71,8 +71,8 @@ if __name__ == '__main__':
 
                 d.find_element_by_xpath('//*[@id="pnnext"]').click()
                 page += 1
+                d.implicitly_wait(3)
                 continue
             except selenium.common.exceptions.NoSuchElementException:
-                d.find_element_by_xpath('//*[@id="pnnext"]').click()
-                page += 1
-                continue
+                print('끝까지 찾았습니다. 종료합니다.')
+                exit()
