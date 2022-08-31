@@ -1,0 +1,163 @@
+[33mcommit a102013de2eb942659e615e57549d5441e893739[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/v2[m[33m)[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed Aug 31 10:20:49 2022 +0900
+
+    Modify 웹엑스에맞게 샌딩 수정
+
+[33mcommit a9ca60fabc617e6f94e4ebe6762b0fdbb558d2f4[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Mon Aug 8 18:19:56 2022 +0900
+
+    Modify 내사이트 구글에 몇번쨰 노출되는지
+
+[33mcommit e168a138703264983941dbcf1a5472ee082ca707[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed Jun 15 11:46:52 2022 +0900
+
+    Modify 휴가 메일 템플릿 수정
+
+[33mcommit b246af6f6b49eeb4293112cb3bb2acc91fc2ae65[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed Jun 15 11:29:54 2022 +0900
+
+    Modify 휴가 메일 수정
+
+[33mcommit 0639ddea3bc1826f8862ce466a83fe9bd335e9c5[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed Jun 15 11:14:38 2022 +0900
+
+    Modify 휴가 메일 수정
+
+[33mcommit cc9a52f23f8d83829a501e5f7d79b29c62c82c20[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Fri May 27 10:02:48 2022 +0900
+
+    Modify 오류 수정
+
+[33mcommit a5edf58532b6b7df5f7ccae78569b7ec90e4304d[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Tue May 24 18:28:58 2022 +0900
+
+    Modify null 방지
+
+[33mcommit 4c16199fbcc1df37671d2232e5f140fdea4ca3f5[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Tue May 24 18:26:55 2022 +0900
+
+    Modify 파일 누락
+
+[33mcommit 253639469ff3fff915f0ac6a141e5690993bfb83[m[33m ([m[1;32mv2[m[33m)[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Tue May 24 18:19:46 2022 +0900
+
+    Modify 고도화 완료
+
+[33mcommit 67a0be6088f08d84c5e8db635fe6a853ea936abd[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Tue May 24 16:15:38 2022 +0900
+
+    Modify 고도화 및 패키지화
+
+[33mcommit fe19713bc32bb5b79aae6a2d42c1700fae06a6ac[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed May 18 13:25:42 2022 +0900
+
+    Modify 날짜 변경
+
+[33mcommit 156d8172dbecb52a033e84bc5407c1b02e2bbf0e[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed May 18 13:21:24 2022 +0900
+
+    Modify 메일발송
+
+[33mcommit 626a89ee7cc855dac6d12a2cf044e89172558d30[m
+Author: 정주호 <mason.jeong@stickint.kr>
+Date:   Wed Apr 20 14:26:43 2022 +0900
+
+    Modify 휴가메일 자동발송
+
+[33mcommit 99863218b687a7285608f4df963fc19af75ea3e8[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Tue Apr 19 22:25:25 2022 +0900
+
+    Created 휴가봇
+
+[33mcommit 2564b8c823c22e2e2a09fe98618b2baa88a22d23[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Fri Oct 29 15:13:03 2021 +0900
+
+    Modify 최초등록자인경우
+
+[33mcommit 954c18adec6481a545133178d1ee63a0664d0d87[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Fri Oct 29 09:57:41 2021 +0900
+
+    Modify 최초등록자인경우
+
+[33mcommit 73129d6ad22828337bdb01c306556e67e0bb1bfc[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 17:44:39 2021 +0900
+
+    Modify 비교좀 복잡하게
+
+[33mcommit 516bfb96206bfe3b4228b70e9814dce3a2c68924[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 17:18:38 2021 +0900
+
+    Modify 회의실 예약도 추가
+
+[33mcommit 66e8e2d4862b3bba6352c4417f34134139d6e13d[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 10:47:00 2021 +0900
+
+    Modify 삭제된 게시물의 경우 카운트 맞춰주기
+
+[33mcommit a9a60ddda9fee53fbea7bbff181b8f6ada235c3f[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 10:43:57 2021 +0900
+
+    Modify 삭제된 게시물의 경우 카운트 맞춰주기
+
+[33mcommit d6154275064342c8539d8b3f8150b3264b3ceacf[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 10:32:51 2021 +0900
+
+    Modify 캐시 버그 수정
+
+[33mcommit cfd4fd407382799796f394cdf6bfd8550e3b7def[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 09:57:14 2021 +0900
+
+    Modify 웹훅 버그 수정
+    
+    - 댓글달때 새로운 알람 오지 않게 처리
+
+[33mcommit 85014e87f0773cea2c5b48f88d91e458ea8bfa17[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 09:55:13 2021 +0900
+
+    Modify 웹훅 버그 수정
+    
+    - 댓글달때 새로운 알람 오지 않게 처리
+
+[33mcommit 4567b5893a90ada237d0d1c8d229a510662520b6[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Thu Oct 28 09:51:06 2021 +0900
+
+    Modify 웹훅 버그 수정
+    
+    - 댓글달때 새로운 알람 오지 않게 처리
+
+[33mcommit fc87e4dad05c545e275ea6449b1c73998df0a665[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Tue Mar 23 13:59:06 2021 +0900
+
+    Add 디자인팀도 웹훅 추가
+    
+    .
+
+[33mcommit ddb0d11d807c51cb8aacc381ea1bd5ef20f5e227[m
+Author: 정주호 <meju7015@gmail.com>
+Date:   Fri Mar 19 14:37:51 2021 +0900
+
+    Add 저장소 생성

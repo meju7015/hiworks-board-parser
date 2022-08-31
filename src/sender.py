@@ -105,7 +105,7 @@ def makeBoardContent(list, body):
     content += f"**날짜** : {list['write_date']}\n"
     content += f"**작성자** : {list['name']}\n"
     content += postViewBody
-    content += f"**링크** : https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list"
+    content += f"**링크** : [바로가기](https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list)"
     return content
 
 
