@@ -92,13 +92,12 @@ def makeVacationContent(lists):
 
 def makeBoardContent(list, body):
     postViewBody = body.text
-    content = '/메일/ Hi-Works 게시판 알람'
-    content += f"제목 : {list['title']}\n"
-    content += f"날짜 : {list['write_date']}\n"
-    content += f"작성자 : {list['name']}\n"
+    content = '### 🟢 Hi-Works 게시판 알람'
+    content += f"**제목** : {list['title']}\n"
+    content += f"**날짜** : {list['write_date']}\n"
+    content += f"**작성자** : {list['name']}\n"
     content += postViewBody
-    content += f"링크 : https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list"
-    content = f"content={parse.quote(content)}"
+    content += f"**링크** : [바로가기](https://board.office.hiworks.com/stickint.onhiworks.com/bbs/board/board_view/{list['fk_board_info_no']}/{list['no']}/new_list)"
     return content
 
 
