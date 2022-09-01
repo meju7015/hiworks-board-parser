@@ -81,10 +81,11 @@ def meetingAlert():
                         })
 
                         for url in SEND_LIST:
-                            sendMessage(
-                                content=content,
-                                url=url
-                            )
+                            if url is not None:
+                                sendMessage(
+                                    content=content,
+                                    url=url
+                                )
 
             # 예약이 없는 상태에서 최초 예약이 들어올경우
             elif 'BKCP' not in prevContent['result']['list'][i]['booking_info'] and 'BKCP' in item['booking_info']:
@@ -98,10 +99,11 @@ def meetingAlert():
                     })
 
                     for url in SEND_LIST:
-                        sendMessage(
-                            content=content,
-                            url=url
-                        )
+                        if url is not None:
+                            sendMessage(
+                                content=content,
+                                url=url
+                            )
 
                 setCache('list', boardReq.content)
             elif 'BKCP' in item['booking_info'] \

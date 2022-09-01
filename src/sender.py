@@ -61,7 +61,9 @@ def sendMessage(content, url):
         "markdown": content
     }
 
-    response = requests.post(url=url, data=json.dumps(data), headers={
+    print(url)
+
+    requests.post(url=url, data=json.dumps(data), headers={
         'Content-Type': 'application/json'
     })
 
