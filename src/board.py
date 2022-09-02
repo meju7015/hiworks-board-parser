@@ -60,7 +60,8 @@ def boardAlert():
                     content = makeBoardContent(list=post, body=postViewBody)
 
                 for list in SEND_LIST:
-                    sendMessage(content=content, url=list)
+                    if list is not None:
+                        sendMessage(content=content, url=list)
 
                 setCache(
                     'board',
